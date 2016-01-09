@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import todoStore from '../stores/'
+
 export default {
   data () {
     return {
@@ -15,7 +17,7 @@ export default {
   },
   methods: {
     addTodo () {
-      alert(this.todo)
+      todoStore.addTodo(this.todo)
       this.todo = ''
     }
   }
