@@ -8,23 +8,39 @@ var store = {
         name: '完成任务2',
         done: false
       }
+    ],
+    todos: [
+      {
+        name: '完成任务1',
+        done: true,
+        canEdit: false
+      }, {
+        name: '完成任务2',
+        done: false,
+        canEdit: false
+      }
     ]
   },
-
+  filters: {
+    all: function (todos) {
+      return todos
+    },
+    undone: function (todos) {
+      return todos.filter(todo => !todo.done)
+    },
+    done: function (todos) {
+      return todos.filter(todo => todo.done)
+    }
+  },
+  // TODO: todos is not todoList
   addTodo: function (todo) {
-    this.state.todoList.push({
+    this.state.todos.push({
       name: todo,
       done: false
     })
-    console.log(this)
   },
-
-  completeTodo: function (index) {
-    this.state.todoList[index].done = true
-  },
-
-  unCompleteTodo: function (index) {
-    this.state.todoList[index].done = false
+  removeTodo: function (index) {
+    this.state.todos.splice(index, 1)
   }
 }
 
