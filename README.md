@@ -18,4 +18,7 @@ npm run build
 npm test
 ```
 
+# preview
+[http://lishengzxc.github.io/vue-todo/](http://lishengzxc.github.io/vue-todo/)
+
 For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).

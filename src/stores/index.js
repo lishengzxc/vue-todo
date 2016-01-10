@@ -1,25 +1,17 @@
+import route from '../routes/'
+
 var store = {
   state: {
-    todoList: [
-      {
-        name: '完成任务1',
-        done: true
-      }, {
-        name: '完成任务2',
-        done: false
-      }
-    ],
-    todos: [
-      {
-        name: '完成任务1',
-        done: true,
-        canEdit: false
-      }, {
-        name: '完成任务2',
-        done: false,
-        canEdit: false
-      }
-    ]
+    todos: [{
+      name: '完成任务1',
+      done: true,
+      canEdit: false
+    }, {
+      name: '完成任务2',
+      done: false,
+      canEdit: false
+    }],
+    filter: 'all'
   },
   filters: {
     all: function (todos) {
@@ -32,16 +24,18 @@ var store = {
       return todos.filter(todo => todo.done)
     }
   },
-  // TODO: todos is not todoList
   addTodo: function (todo) {
     this.state.todos.push({
       name: todo,
-      done: false
+      done: false,
+      canEdit: false
     })
   },
   removeTodo: function (index) {
     this.state.todos.splice(index, 1)
   }
 }
+
+route(store)
 
 export default store

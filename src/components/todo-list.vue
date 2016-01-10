@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="(index, todo) in todos">
+    <li v-for="(index, todo) in filteredTodos">
       <input type="checkbox" v-model="todo.done">
       <span v-on:dblclick="makeEditTodo(index)" v-show="!todo.canEdit">{{todo.name}}</span>
       <input v-show="todo.canEdit" v-todo-focus="todo.canEdit" v-on:blur="inputOnBlur" type="text" v-model="todo.name">
@@ -11,11 +11,21 @@
 
 <script>
 import todoStore from '../stores/'
+import routes from '../routes/'
 
 export default {
   data () {
     return {
-      todos: todoStore.state.todos
+      todos: todoStore.state.todos,
+      filter: todoStore.state.filter
+    }
+  },
+  created: function () {
+    routes(this)
+  },
+  computed: {
+    filteredTodos: function () {
+      return todoStore.filters[this.filter](this.todos)
     }
   },
   methods: {
